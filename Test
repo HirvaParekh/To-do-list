@@ -1,0 +1,38 @@
+"use strict"
+
+const titleList = [];
+const descList = [];
+
+function addTo(){
+	var title = document.getElementById("title");
+	var desc = document.getElementById("desc");	
+	
+	if(title.value == "" || desc.value == ""){
+		alert("Invalid values");
+	}
+	else if(desc.value.length < 10){
+		alert("Description should be atleast 10 characters.")
+	}
+	else{
+		
+		titleList.push(title.value);
+		descList.push(desc.value);
+		let list = "<b>Tasks</b><br><br><ul id=\"displayList\">"
+		for(let i = 0; i < titleList.length; i++){
+			list = list + "<li>" + titleList[i] + "&nbsp&nbsp&nbsp&nbsp" + descList[i] + "</li>";
+		}
+		list = list + "</ul>";
+		document.getElementById("display").innerHTML = list;
+		
+		document.getElementById("displayList").addEventListener("click",function(e) {
+			var tgt = e.target;
+			if (tgt.tagName.toUpperCase() == "LI") {
+				tgt.parentNode.removeChild(tgt);
+			}
+		});
+		
+		console.log(titleList);
+		console.log(descList);
+	}
+	
+}
